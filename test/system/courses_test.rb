@@ -2,7 +2,10 @@ require "application_system_test_case"
 
 class CoursesTest < ApplicationSystemTestCase
   setup do
+    @user = users(:one)
     @course = courses(:one)
+
+    login_as(@user)
   end
 
   test "visiting the index" do
@@ -14,7 +17,7 @@ class CoursesTest < ApplicationSystemTestCase
     visit courses_url
     click_on "New course"
 
-    fill_in "Description", with: @course.description
+    fill_in_rich_text_area "Description", with: @course.description
     fill_in "Title", with: @course.title
     click_on "Create Course"
 
@@ -26,7 +29,7 @@ class CoursesTest < ApplicationSystemTestCase
     visit course_url(@course)
     click_on "Edit this course", match: :first
 
-    fill_in "Description", with: @course.description
+    fill_in_rich_text_area "Description", with: @course.description
     fill_in "Title", with: @course.title
     click_on "Update Course"
 
