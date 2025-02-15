@@ -2,7 +2,10 @@ require "test_helper"
 
 class CoursesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @user = users(:one)
     @course = courses(:one)
+
+    login_as(@user)
   end
 
   test "should get index" do
@@ -44,5 +47,12 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to courses_url
+  end
+
+  test "should get redirect when user not logged in" do
+    logout!
+
+    get courses_url
+    assert_response :redirect
   end
 end
