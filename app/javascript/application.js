@@ -3,6 +3,9 @@ import "@hotwired/turbo-rails";
 import "./controllers";
 import * as bootstrap from "bootstrap";
 
+import "trix";
+import "@rails/actiontext";
+
 document.addEventListener("turbo:load", () => {
   const tooltipTriggerList = document.querySelectorAll(
     '[data-bs-toggle="tooltip"]'

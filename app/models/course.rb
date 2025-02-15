@@ -1,4 +1,5 @@
 class Course < ApplicationRecord
-  validates_presence_of :title
-  validates_length_of :description, { minimum: 5 }
+  has_rich_text :description
+
+  validates_presence_of :title, :description
 end
