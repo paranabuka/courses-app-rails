@@ -51,6 +51,9 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Faker is a port of Perl's Data::Faker library [https://github.com/faker-ruby/faker]
+  gem "faker", "~> 3.4"
 end
 
 group :development do
