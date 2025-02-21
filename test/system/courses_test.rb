@@ -39,7 +39,9 @@ class CoursesTest < ApplicationSystemTestCase
 
   test "should destroy Course" do
     visit course_url(@course)
-    click_on "Destroy this course", match: :first
+    accept_alert do
+      click_on "Destroy this course", match: :first
+    end
 
     assert_text "Course was successfully destroyed"
   end

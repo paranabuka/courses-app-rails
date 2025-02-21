@@ -1,17 +1,14 @@
-<div id="<%= dom_id course %>">
-  <p>
-    <strong>Title:</strong>
+<div id="<%= dom_id course %>" class="my-5 space-y-5">
+  <div>
+    <strong class="block font-medium mb-1">Title:</strong>
     <%= course.title %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">User:</strong>
     <%= course.user.email_address %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Description:</strong>
     <%= course.description %>
-  </p>
-
+  </div>
 </div>

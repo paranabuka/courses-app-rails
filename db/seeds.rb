@@ -7,8 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
-users = (1..5).to_a.map do |idx|
+users = (1..3).to_a.map do |idx|
   User.create!(
     email_address: "user#{idx}@example.com",
     password: "s3cr3t", password_confirmation: "s3cr3t"
