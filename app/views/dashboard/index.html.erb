@@ -1,5 +1,5 @@
 <div class="space-y-12">
-  <h1>Dashboard</h1>
+  <h1 class="font-bold text-4xl">Dashboard</h1>
   <p>Welcome, <%= Current.user.email_address %></p>
   <%= link_to "Courses", courses_path %>
   <%= button_to "Sign Out", session_path, method: :delete %>
