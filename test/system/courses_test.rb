@@ -10,7 +10,7 @@ class CoursesTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit courses_url
-    assert_selector "h1", text: "Courses"
+    assert_selector "p", text: "Courses"
   end
 
   test "should create course" do

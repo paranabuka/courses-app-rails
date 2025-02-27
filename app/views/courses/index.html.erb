@@ -1,27 +1,51 @@
 <% content_for :title, "Courses" %>
 
-<div class="w-full">
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Courses</h1>
-    <%= link_to "New course", new_course_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+<div class="w-full relative overflow-x-auto shadow-md sm:rounded-lg">
+  <div class="flex flex-wrap items-center justify-between pb-4 bg-white dark:bg-gray-900">
+    <div class="relative mt-1 ml-3">
+      <p class="text-3xl font-bold text-gray-900 dark:text-white">Courses: <%= @courses.size %></p>
+    </div>
+    <label for="table-search" class="sr-only">Search</label>
+    <div class="relative mt-1">
+      <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+        </svg>
+      </div>
+      <input type="text" id="table-search" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
+    </div>
+    <div class="relative mt-1">
+      <%= link_to "New course", new_course_path, class: "text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" %>
+    </div>
   </div>
-
-  <div id="courses" class="min-w-full divide-y divide-gray-200 space-y-5">
-    <% if @courses.any? %>
-      <% @courses.each do |course| %>
-        <div class="flex justify-between items-center">
-          <%= render course %>
-          <div class="space-x-2">
-            <%= link_to "Show", course, class: "rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= link_to "Edit", edit_course_path(course), class: "rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <div class="inline-block">
-              <%= button_to "Destroy", course, method: :delete, class: "rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
-      <p class="text-center my-10">No courses found.</p>
-    <% end %>
-  </div>
+  <% if @courses.any? %>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">Title</th>
+          <th scope="col" class="px-6 py-3">Description</th>
+          <th scope="col" class="px-6 py-3">User</th>
+          <th scope="col" class="px-6 py-3">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @courses.each do |course| %>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= course.title %></th>
+            <td class="px-6 py-4"><%= course.description %></td>
+            <td class="px-6 py-4"><%= course.user.email_address %></td>
+            <td class="px-6 py-4 flex space-x-2">
+              <%= link_to "Show", course, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+              <%= link_to "Edit", edit_course_path(course), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+              <div class="inline_block">
+                <%= button_to "Destroy", course, method: :delete, class: "cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline", data: { turbo_confirm: "Are you sure?" } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="text-center my-10">No courses found</p>
+  <% end %>
 </div>
