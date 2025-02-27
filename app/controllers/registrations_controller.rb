@@ -2,7 +2,7 @@ class RegistrationsController < ApplicationController
   allow_unauthenticated_access
 
   def new
-    redirect_to root_path if authenticated?
+    redirect_to root_path, notice: "You are already logged in" if authenticated?
 
     @user = User.new
   end
